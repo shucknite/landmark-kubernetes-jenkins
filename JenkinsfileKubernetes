@@ -1,7 +1,7 @@
 node{
      
     stage('SCM Checkout'){
-        git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/simonLegah/UnityProject.git',branch: 'master'
+        git credentialsId: 'GIT_CREDENTIALS', url:  'https://github.com/shucknite/spring-boot-docker.git',branch: 'master'
     }
     
     stage(" Maven Clean Package"){
@@ -18,7 +18,7 @@ node{
     
     stage('Push Docker Image'){
         withCredentials([string(credentialsId: 'DOKCER_HUB_PASSWORD', variable: 'DOKCER_HUB_PASSWORD')]) {
-          sh "docker login -u mylandmarktech -p ${DOKCER_HUB_PASSWORD}"
+          sh "docker login -u shucknite -p ${DOKCER_HUB_PASSWORD}"
         }
         sh 'docker push mylandmarktech/spring-boot-mongo'
      }
